@@ -27,8 +27,10 @@ def mouse_callback(event, x, y, flags, param):
 
         one_pixel = np.uint8([[color]])
         hsv = cv.cvtColor(one_pixel, cv.COLOR_BGR2HSV)
+        print("-----")
+        print(hsv)
         hsv = hsv[0][0]
-
+        print(hsv[0])
         # HSV 색공간에서 마우스 클릭으로 얻은 픽셀값과 유사한 필셀값의 범위를 정합니다.
         if hsv[0] < 10:
             print("case1")

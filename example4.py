@@ -66,24 +66,24 @@ while True:
 cv2.destroyAllWindows()
 '''
 while True:
-    img = cv2.imread('white.png')
-    height, width = img.shape[:2]
-    print(height, width)
+    img = cv2.imread('img.png')
+    #height, width = img.shape[:2]
+    #print(height, width)
     hsv=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
     
-    #hist = cv2.calcHist([hsv], [0, 1], None, [180, 256], [0, 180, 0, 256])
-    #hist2 = cv2.calcHist([hsv], [1, 2], None, [256, 256], [0, 256, 0, 256])
-    #lower_white=np.array([0,0,0])
-    #upper_white=np.array([0,0,255])
+    hist = cv2.calcHist([hsv], [0, 1], None, [180, 256], [0, 180, 0, 256])
+    hist2 = cv2.calcHist([hsv], [1, 2], None, [256, 256], [0, 256, 0, 256])
+    lower_white=np.array([90,10,145])
+    upper_white=np.array([120,40,220])
     
     mask_white=cv2.inRange(hsv,lower_white,upper_white)
     result = cv2.bitwise_and(img,img,mask=mask_white)
     
-    plt.imshow(hist,interpolation = 'nearest')
-    plt.imshow(hist2,interpolation = 'nearest')
-    plt.show()
     
-    #cv2.rectangle(img, (280,93), (280,94), (0, 255, 0), 2)
+    #plt.imshow(hist,interpolation = 'nearest')
+    #plt.imshow(hist2,interpolation = 'nearest')
+    #plt.show()
+    
     cv2.imshow('original',img)
     cv2.imshow('white',result)
     
